@@ -9,13 +9,38 @@
 /* Begin PBXBuildFile section */
 		B507A0041CB2287A0028504C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0031CB2287A0028504C /* main.m */; };
 		B507A0071CB2287A0028504C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0061CB2287A0028504C /* AppDelegate.m */; };
-		B507A00A1CB2287A0028504C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0091CB2287A0028504C /* ViewController.m */; };
 		B507A00D1CB2287A0028504C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B507A00B1CB2287A0028504C /* Main.storyboard */; };
 		B507A0101CB2287A0028504C /* SafeNightOut.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B507A00E1CB2287A0028504C /* SafeNightOut.xcdatamodeld */; };
 		B507A0121CB2287A0028504C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B507A0111CB2287A0028504C /* Assets.xcassets */; };
 		B507A0151CB2287A0028504C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B507A0131CB2287A0028504C /* LaunchScreen.storyboard */; };
 		B507A0201CB2287B0028504C /* SafeNightOutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A01F1CB2287B0028504C /* SafeNightOutTests.m */; };
 		B507A02B1CB2287B0028504C /* SafeNightOutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A02A1CB2287B0028504C /* SafeNightOutUITests.m */; };
+		B507A0401CB229920028504C /* BG-6plus.png in Resources */ = {isa = PBXBuildFile; fileRef = B507A0381CB229920028504C /* BG-6plus.png */; };
+		B507A0411CB229920028504C /* BG-iphone4 retina.png in Resources */ = {isa = PBXBuildFile; fileRef = B507A0391CB229920028504C /* BG-iphone4 retina.png */; };
+		B507A0421CB229920028504C /* BG-iphone4.png in Resources */ = {isa = PBXBuildFile; fileRef = B507A03A1CB229920028504C /* BG-iphone4.png */; };
+		B507A0431CB229920028504C /* BG.png in Resources */ = {isa = PBXBuildFile; fileRef = B507A03B1CB229920028504C /* BG.png */; };
+		B507A0441CB229920028504C /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = B507A03C1CB229920028504C /* car.png */; };
+		B507A0451CB229920028504C /* iconTrain.png in Resources */ = {isa = PBXBuildFile; fileRef = B507A03D1CB229920028504C /* iconTrain.png */; };
+		B507A0461CB229920028504C /* IMG_1803.JPG in Resources */ = {isa = PBXBuildFile; fileRef = B507A03E1CB229920028504C /* IMG_1803.JPG */; };
+		B507A0471CB229920028504C /* IMG_1804.JPG in Resources */ = {isa = PBXBuildFile; fileRef = B507A03F1CB229920028504C /* IMG_1804.JPG */; };
+		B507A04A1CB229D20028504C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0491CB229D20028504C /* MainViewController.m */; };
+		B507A04D1CB229DC0028504C /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A04C1CB229DC0028504C /* MapViewController.m */; };
+		B507A0501CB229E60028504C /* SafetyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A04F1CB229E60028504C /* SafetyViewController.m */; };
+		B507A0531CB22ADC0028504C /* BACViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0521CB22ADC0028504C /* BACViewController.m */; };
+		B507A0561CB22AF00028504C /* LocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0551CB22AF00028504C /* LocationSearchTableViewController.m */; };
+		B507A05A1CB22B480028504C /* CustomAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0591CB22B480028504C /* CustomAnnotation.m */; };
+		B507A05D1CB22B580028504C /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A05C1CB22B580028504C /* StopAnnotation.m */; };
+		B507A0601CB22B680028504C /* PTVTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A05F1CB22B680028504C /* PTVTableViewController.m */; };
+		B507A07F1CB234B20028504C /* UIViewController+AMSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0701CB234B20028504C /* UIViewController+AMSlideMenu.m */; };
+		B507A0801CB234B20028504C /* AMSlideMenuRightTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0721CB234B20028504C /* AMSlideMenuRightTableViewController.m */; };
+		B507A0811CB234B20028504C /* AMSlideMenuRightMenuSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0741CB234B20028504C /* AMSlideMenuRightMenuSegue.m */; };
+		B507A0821CB234B20028504C /* AMSlideMenuMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0771CB234B20028504C /* AMSlideMenuMainViewController.m */; };
+		B507A0831CB234B20028504C /* AMSlideMenuLeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0791CB234B20028504C /* AMSlideMenuLeftTableViewController.m */; };
+		B507A0841CB234B20028504C /* AMSlideMenuLeftMenuSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A07B1CB234B20028504C /* AMSlideMenuLeftMenuSegue.m */; };
+		B507A0851CB234B20028504C /* AMSlideMenuContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A07D1CB234B20028504C /* AMSlideMenuContentSegue.m */; };
+		B507A0871CB235B00028504C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B507A0861CB235B00028504C /* MapKit.framework */; };
+		B507A08A1CB237B50028504C /* icon-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = B507A0881CB237B50028504C /* icon-menu.png */; };
+		B507A08B1CB237B50028504C /* icon-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B507A0891CB237B50028504C /* icon-menu@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +65,6 @@
 		B507A0031CB2287A0028504C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B507A0051CB2287A0028504C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B507A0061CB2287A0028504C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B507A0081CB2287A0028504C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B507A0091CB2287A0028504C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B507A00C1CB2287A0028504C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B507A00F1CB2287A0028504C /* SafeNightOut.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SafeNightOut.xcdatamodel; sourceTree = "<group>"; };
 		B507A0111CB2287A0028504C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +76,49 @@
 		B507A0261CB2287B0028504C /* SafeNightOutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeNightOutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B507A02A1CB2287B0028504C /* SafeNightOutUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafeNightOutUITests.m; sourceTree = "<group>"; };
 		B507A02C1CB2287B0028504C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B507A0381CB229920028504C /* BG-6plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BG-6plus.png"; sourceTree = "<group>"; };
+		B507A0391CB229920028504C /* BG-iphone4 retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BG-iphone4 retina.png"; sourceTree = "<group>"; };
+		B507A03A1CB229920028504C /* BG-iphone4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BG-iphone4.png"; sourceTree = "<group>"; };
+		B507A03B1CB229920028504C /* BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG.png; sourceTree = "<group>"; };
+		B507A03C1CB229920028504C /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car.png; sourceTree = "<group>"; };
+		B507A03D1CB229920028504C /* iconTrain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconTrain.png; sourceTree = "<group>"; };
+		B507A03E1CB229920028504C /* IMG_1803.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1803.JPG; sourceTree = "<group>"; };
+		B507A03F1CB229920028504C /* IMG_1804.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1804.JPG; sourceTree = "<group>"; };
+		B507A0481CB229D20028504C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		B507A0491CB229D20028504C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		B507A04B1CB229DC0028504C /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		B507A04C1CB229DC0028504C /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		B507A04E1CB229E60028504C /* SafetyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafetyViewController.h; sourceTree = "<group>"; };
+		B507A04F1CB229E60028504C /* SafetyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafetyViewController.m; sourceTree = "<group>"; };
+		B507A0511CB22ADC0028504C /* BACViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BACViewController.h; sourceTree = "<group>"; };
+		B507A0521CB22ADC0028504C /* BACViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BACViewController.m; sourceTree = "<group>"; };
+		B507A0541CB22AF00028504C /* LocationSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchTableViewController.h; sourceTree = "<group>"; };
+		B507A0551CB22AF00028504C /* LocationSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchTableViewController.m; sourceTree = "<group>"; };
+		B507A0571CB22B280028504C /* AMSlideMenuWithoutStoryboard-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMSlideMenuWithoutStoryboard-Prefix.pch"; sourceTree = "<group>"; };
+		B507A0581CB22B480028504C /* CustomAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotation.h; sourceTree = "<group>"; };
+		B507A0591CB22B480028504C /* CustomAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotation.m; sourceTree = "<group>"; };
+		B507A05B1CB22B580028504C /* StopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotation.h; sourceTree = "<group>"; };
+		B507A05C1CB22B580028504C /* StopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotation.m; sourceTree = "<group>"; };
+		B507A05E1CB22B680028504C /* PTVTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTVTableViewController.h; sourceTree = "<group>"; };
+		B507A05F1CB22B680028504C /* PTVTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTVTableViewController.m; sourceTree = "<group>"; };
+		B507A0701CB234B20028504C /* UIViewController+AMSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AMSlideMenu.m"; sourceTree = "<group>"; };
+		B507A0711CB234B20028504C /* UIViewController+AMSlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AMSlideMenu.h"; sourceTree = "<group>"; };
+		B507A0721CB234B20028504C /* AMSlideMenuRightTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSlideMenuRightTableViewController.m; sourceTree = "<group>"; };
+		B507A0731CB234B20028504C /* AMSlideMenuRightTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSlideMenuRightTableViewController.h; sourceTree = "<group>"; };
+		B507A0741CB234B20028504C /* AMSlideMenuRightMenuSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSlideMenuRightMenuSegue.m; sourceTree = "<group>"; };
+		B507A0751CB234B20028504C /* AMSlideMenuRightMenuSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSlideMenuRightMenuSegue.h; sourceTree = "<group>"; };
+		B507A0761CB234B20028504C /* AMSlideMenuProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSlideMenuProtocols.h; sourceTree = "<group>"; };
+		B507A0771CB234B20028504C /* AMSlideMenuMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSlideMenuMainViewController.m; sourceTree = "<group>"; };
+		B507A0781CB234B20028504C /* AMSlideMenuMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSlideMenuMainViewController.h; sourceTree = "<group>"; };
+		B507A0791CB234B20028504C /* AMSlideMenuLeftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSlideMenuLeftTableViewController.m; sourceTree = "<group>"; };
+		B507A07A1CB234B20028504C /* AMSlideMenuLeftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSlideMenuLeftTableViewController.h; sourceTree = "<group>"; };
+		B507A07B1CB234B20028504C /* AMSlideMenuLeftMenuSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSlideMenuLeftMenuSegue.m; sourceTree = "<group>"; };
+		B507A07C1CB234B20028504C /* AMSlideMenuLeftMenuSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSlideMenuLeftMenuSegue.h; sourceTree = "<group>"; };
+		B507A07D1CB234B20028504C /* AMSlideMenuContentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSlideMenuContentSegue.m; sourceTree = "<group>"; };
+		B507A07E1CB234B20028504C /* AMSlideMenuContentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSlideMenuContentSegue.h; sourceTree = "<group>"; };
+		B507A0861CB235B00028504C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B507A0881CB237B50028504C /* icon-menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-menu.png"; sourceTree = "<group>"; };
+		B507A0891CB237B50028504C /* icon-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-menu@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B507A0871CB235B00028504C /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +150,7 @@
 		B5079FF61CB2287A0028504C = {
 			isa = PBXGroup;
 			children = (
+				B507A0861CB235B00028504C /* MapKit.framework */,
 				B507A0011CB2287A0028504C /* SafeNightOut */,
 				B507A01E1CB2287B0028504C /* SafeNightOutTests */,
 				B507A0291CB2287B0028504C /* SafeNightOutUITests */,
@@ -103,16 +171,32 @@
 		B507A0011CB2287A0028504C /* SafeNightOut */ = {
 			isa = PBXGroup;
 			children = (
+				B507A06F1CB234640028504C /* AMSlideMenu */,
 				B507A0051CB2287A0028504C /* AppDelegate.h */,
 				B507A0061CB2287A0028504C /* AppDelegate.m */,
-				B507A0081CB2287A0028504C /* ViewController.h */,
-				B507A0091CB2287A0028504C /* ViewController.m */,
 				B507A00B1CB2287A0028504C /* Main.storyboard */,
+				B507A0481CB229D20028504C /* MainViewController.h */,
+				B507A0491CB229D20028504C /* MainViewController.m */,
+				B507A04B1CB229DC0028504C /* MapViewController.h */,
+				B507A04C1CB229DC0028504C /* MapViewController.m */,
+				B507A04E1CB229E60028504C /* SafetyViewController.h */,
+				B507A04F1CB229E60028504C /* SafetyViewController.m */,
+				B507A0511CB22ADC0028504C /* BACViewController.h */,
+				B507A0521CB22ADC0028504C /* BACViewController.m */,
 				B507A0111CB2287A0028504C /* Assets.xcassets */,
 				B507A0131CB2287A0028504C /* LaunchScreen.storyboard */,
 				B507A0161CB2287A0028504C /* Info.plist */,
 				B507A00E1CB2287A0028504C /* SafeNightOut.xcdatamodeld */,
 				B507A0021CB2287A0028504C /* Supporting Files */,
+				B507A0541CB22AF00028504C /* LocationSearchTableViewController.h */,
+				B507A0551CB22AF00028504C /* LocationSearchTableViewController.m */,
+				B507A0571CB22B280028504C /* AMSlideMenuWithoutStoryboard-Prefix.pch */,
+				B507A0581CB22B480028504C /* CustomAnnotation.h */,
+				B507A0591CB22B480028504C /* CustomAnnotation.m */,
+				B507A05B1CB22B580028504C /* StopAnnotation.h */,
+				B507A05C1CB22B580028504C /* StopAnnotation.m */,
+				B507A05E1CB22B680028504C /* PTVTableViewController.h */,
+				B507A05F1CB22B680028504C /* PTVTableViewController.m */,
 			);
 			path = SafeNightOut;
 			sourceTree = "<group>";
@@ -120,6 +204,16 @@
 		B507A0021CB2287A0028504C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B507A0881CB237B50028504C /* icon-menu.png */,
+				B507A0891CB237B50028504C /* icon-menu@2x.png */,
+				B507A0381CB229920028504C /* BG-6plus.png */,
+				B507A0391CB229920028504C /* BG-iphone4 retina.png */,
+				B507A03A1CB229920028504C /* BG-iphone4.png */,
+				B507A03B1CB229920028504C /* BG.png */,
+				B507A03C1CB229920028504C /* car.png */,
+				B507A03D1CB229920028504C /* iconTrain.png */,
+				B507A03E1CB229920028504C /* IMG_1803.JPG */,
+				B507A03F1CB229920028504C /* IMG_1804.JPG */,
 				B507A0031CB2287A0028504C /* main.m */,
 			);
 			name = "Supporting Files";
@@ -141,6 +235,28 @@
 				B507A02C1CB2287B0028504C /* Info.plist */,
 			);
 			path = SafeNightOutUITests;
+			sourceTree = "<group>";
+		};
+		B507A06F1CB234640028504C /* AMSlideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				B507A0701CB234B20028504C /* UIViewController+AMSlideMenu.m */,
+				B507A0711CB234B20028504C /* UIViewController+AMSlideMenu.h */,
+				B507A0721CB234B20028504C /* AMSlideMenuRightTableViewController.m */,
+				B507A0731CB234B20028504C /* AMSlideMenuRightTableViewController.h */,
+				B507A0741CB234B20028504C /* AMSlideMenuRightMenuSegue.m */,
+				B507A0751CB234B20028504C /* AMSlideMenuRightMenuSegue.h */,
+				B507A0761CB234B20028504C /* AMSlideMenuProtocols.h */,
+				B507A0771CB234B20028504C /* AMSlideMenuMainViewController.m */,
+				B507A0781CB234B20028504C /* AMSlideMenuMainViewController.h */,
+				B507A0791CB234B20028504C /* AMSlideMenuLeftTableViewController.m */,
+				B507A07A1CB234B20028504C /* AMSlideMenuLeftTableViewController.h */,
+				B507A07B1CB234B20028504C /* AMSlideMenuLeftMenuSegue.m */,
+				B507A07C1CB234B20028504C /* AMSlideMenuLeftMenuSegue.h */,
+				B507A07D1CB234B20028504C /* AMSlideMenuContentSegue.m */,
+				B507A07E1CB234B20028504C /* AMSlideMenuContentSegue.h */,
+			);
+			name = AMSlideMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +326,7 @@
 				TargetAttributes = {
 					B5079FFE1CB2287A0028504C = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 24C74JST7F;
 					};
 					B507A01A1CB2287B0028504C = {
 						CreatedOnToolsVersion = 7.3;
@@ -246,9 +363,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B507A0441CB229920028504C /* car.png in Resources */,
+				B507A0421CB229920028504C /* BG-iphone4.png in Resources */,
+				B507A0411CB229920028504C /* BG-iphone4 retina.png in Resources */,
+				B507A08B1CB237B50028504C /* icon-menu@2x.png in Resources */,
+				B507A08A1CB237B50028504C /* icon-menu.png in Resources */,
+				B507A0461CB229920028504C /* IMG_1803.JPG in Resources */,
 				B507A0151CB2287A0028504C /* LaunchScreen.storyboard in Resources */,
+				B507A0471CB229920028504C /* IMG_1804.JPG in Resources */,
 				B507A0121CB2287A0028504C /* Assets.xcassets in Resources */,
+				B507A0451CB229920028504C /* iconTrain.png in Resources */,
 				B507A00D1CB2287A0028504C /* Main.storyboard in Resources */,
+				B507A0401CB229920028504C /* BG-6plus.png in Resources */,
+				B507A0431CB229920028504C /* BG.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,10 +400,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B507A00A1CB2287A0028504C /* ViewController.m in Sources */,
+				B507A05A1CB22B480028504C /* CustomAnnotation.m in Sources */,
+				B507A0501CB229E60028504C /* SafetyViewController.m in Sources */,
 				B507A0071CB2287A0028504C /* AppDelegate.m in Sources */,
 				B507A0101CB2287A0028504C /* SafeNightOut.xcdatamodeld in Sources */,
+				B507A0821CB234B20028504C /* AMSlideMenuMainViewController.m in Sources */,
+				B507A0831CB234B20028504C /* AMSlideMenuLeftTableViewController.m in Sources */,
+				B507A0531CB22ADC0028504C /* BACViewController.m in Sources */,
+				B507A0801CB234B20028504C /* AMSlideMenuRightTableViewController.m in Sources */,
+				B507A0561CB22AF00028504C /* LocationSearchTableViewController.m in Sources */,
+				B507A04D1CB229DC0028504C /* MapViewController.m in Sources */,
+				B507A0811CB234B20028504C /* AMSlideMenuRightMenuSegue.m in Sources */,
+				B507A0601CB22B680028504C /* PTVTableViewController.m in Sources */,
+				B507A0851CB234B20028504C /* AMSlideMenuContentSegue.m in Sources */,
 				B507A0041CB2287A0028504C /* main.m in Sources */,
+				B507A07F1CB234B20028504C /* UIViewController+AMSlideMenu.m in Sources */,
+				B507A05D1CB22B580028504C /* StopAnnotation.m in Sources */,
+				B507A04A1CB229D20028504C /* MainViewController.m in Sources */,
+				B507A0841CB234B20028504C /* AMSlideMenuLeftMenuSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,10 +558,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SafeNightOut/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evan.test.SafeNightOut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -428,10 +573,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SafeNightOut/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evan.test.SafeNightOut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -500,6 +649,7 @@
 				B507A0311CB2287B0028504C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B507A0321CB2287B0028504C /* Build configuration list for PBXNativeTarget "SafeNightOutTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +658,7 @@
 				B507A0341CB2287B0028504C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B507A0351CB2287B0028504C /* Build configuration list for PBXNativeTarget "SafeNightOutUITests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +667,7 @@
 				B507A0371CB2287B0028504C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
