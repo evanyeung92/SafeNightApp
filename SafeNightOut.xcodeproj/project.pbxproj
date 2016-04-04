@@ -1,0 +1,536 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B507A0041CB2287A0028504C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0031CB2287A0028504C /* main.m */; };
+		B507A0071CB2287A0028504C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0061CB2287A0028504C /* AppDelegate.m */; };
+		B507A00A1CB2287A0028504C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A0091CB2287A0028504C /* ViewController.m */; };
+		B507A00D1CB2287A0028504C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B507A00B1CB2287A0028504C /* Main.storyboard */; };
+		B507A0101CB2287A0028504C /* SafeNightOut.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B507A00E1CB2287A0028504C /* SafeNightOut.xcdatamodeld */; };
+		B507A0121CB2287A0028504C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B507A0111CB2287A0028504C /* Assets.xcassets */; };
+		B507A0151CB2287A0028504C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B507A0131CB2287A0028504C /* LaunchScreen.storyboard */; };
+		B507A0201CB2287B0028504C /* SafeNightOutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A01F1CB2287B0028504C /* SafeNightOutTests.m */; };
+		B507A02B1CB2287B0028504C /* SafeNightOutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B507A02A1CB2287B0028504C /* SafeNightOutUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B507A01C1CB2287B0028504C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5079FF71CB2287A0028504C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5079FFE1CB2287A0028504C;
+			remoteInfo = SafeNightOut;
+		};
+		B507A0271CB2287B0028504C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5079FF71CB2287A0028504C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5079FFE1CB2287A0028504C;
+			remoteInfo = SafeNightOut;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B5079FFF1CB2287A0028504C /* SafeNightOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeNightOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B507A0031CB2287A0028504C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B507A0051CB2287A0028504C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B507A0061CB2287A0028504C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B507A0081CB2287A0028504C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B507A0091CB2287A0028504C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B507A00C1CB2287A0028504C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B507A00F1CB2287A0028504C /* SafeNightOut.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SafeNightOut.xcdatamodel; sourceTree = "<group>"; };
+		B507A0111CB2287A0028504C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B507A0141CB2287A0028504C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B507A0161CB2287A0028504C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B507A01B1CB2287B0028504C /* SafeNightOutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeNightOutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B507A01F1CB2287B0028504C /* SafeNightOutTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafeNightOutTests.m; sourceTree = "<group>"; };
+		B507A0211CB2287B0028504C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B507A0261CB2287B0028504C /* SafeNightOutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeNightOutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B507A02A1CB2287B0028504C /* SafeNightOutUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafeNightOutUITests.m; sourceTree = "<group>"; };
+		B507A02C1CB2287B0028504C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B5079FFC1CB2287A0028504C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B507A0181CB2287B0028504C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B507A0231CB2287B0028504C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B5079FF61CB2287A0028504C = {
+			isa = PBXGroup;
+			children = (
+				B507A0011CB2287A0028504C /* SafeNightOut */,
+				B507A01E1CB2287B0028504C /* SafeNightOutTests */,
+				B507A0291CB2287B0028504C /* SafeNightOutUITests */,
+				B507A0001CB2287A0028504C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B507A0001CB2287A0028504C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5079FFF1CB2287A0028504C /* SafeNightOut.app */,
+				B507A01B1CB2287B0028504C /* SafeNightOutTests.xctest */,
+				B507A0261CB2287B0028504C /* SafeNightOutUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B507A0011CB2287A0028504C /* SafeNightOut */ = {
+			isa = PBXGroup;
+			children = (
+				B507A0051CB2287A0028504C /* AppDelegate.h */,
+				B507A0061CB2287A0028504C /* AppDelegate.m */,
+				B507A0081CB2287A0028504C /* ViewController.h */,
+				B507A0091CB2287A0028504C /* ViewController.m */,
+				B507A00B1CB2287A0028504C /* Main.storyboard */,
+				B507A0111CB2287A0028504C /* Assets.xcassets */,
+				B507A0131CB2287A0028504C /* LaunchScreen.storyboard */,
+				B507A0161CB2287A0028504C /* Info.plist */,
+				B507A00E1CB2287A0028504C /* SafeNightOut.xcdatamodeld */,
+				B507A0021CB2287A0028504C /* Supporting Files */,
+			);
+			path = SafeNightOut;
+			sourceTree = "<group>";
+		};
+		B507A0021CB2287A0028504C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B507A0031CB2287A0028504C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B507A01E1CB2287B0028504C /* SafeNightOutTests */ = {
+			isa = PBXGroup;
+			children = (
+				B507A01F1CB2287B0028504C /* SafeNightOutTests.m */,
+				B507A0211CB2287B0028504C /* Info.plist */,
+			);
+			path = SafeNightOutTests;
+			sourceTree = "<group>";
+		};
+		B507A0291CB2287B0028504C /* SafeNightOutUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B507A02A1CB2287B0028504C /* SafeNightOutUITests.m */,
+				B507A02C1CB2287B0028504C /* Info.plist */,
+			);
+			path = SafeNightOutUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B5079FFE1CB2287A0028504C /* SafeNightOut */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B507A02F1CB2287B0028504C /* Build configuration list for PBXNativeTarget "SafeNightOut" */;
+			buildPhases = (
+				B5079FFB1CB2287A0028504C /* Sources */,
+				B5079FFC1CB2287A0028504C /* Frameworks */,
+				B5079FFD1CB2287A0028504C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SafeNightOut;
+			productName = SafeNightOut;
+			productReference = B5079FFF1CB2287A0028504C /* SafeNightOut.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B507A01A1CB2287B0028504C /* SafeNightOutTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B507A0321CB2287B0028504C /* Build configuration list for PBXNativeTarget "SafeNightOutTests" */;
+			buildPhases = (
+				B507A0171CB2287B0028504C /* Sources */,
+				B507A0181CB2287B0028504C /* Frameworks */,
+				B507A0191CB2287B0028504C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B507A01D1CB2287B0028504C /* PBXTargetDependency */,
+			);
+			name = SafeNightOutTests;
+			productName = SafeNightOutTests;
+			productReference = B507A01B1CB2287B0028504C /* SafeNightOutTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B507A0251CB2287B0028504C /* SafeNightOutUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B507A0351CB2287B0028504C /* Build configuration list for PBXNativeTarget "SafeNightOutUITests" */;
+			buildPhases = (
+				B507A0221CB2287B0028504C /* Sources */,
+				B507A0231CB2287B0028504C /* Frameworks */,
+				B507A0241CB2287B0028504C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B507A0281CB2287B0028504C /* PBXTargetDependency */,
+			);
+			name = SafeNightOutUITests;
+			productName = SafeNightOutUITests;
+			productReference = B507A0261CB2287B0028504C /* SafeNightOutUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B5079FF71CB2287A0028504C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Evan Yeung";
+				TargetAttributes = {
+					B5079FFE1CB2287A0028504C = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					B507A01A1CB2287B0028504C = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = B5079FFE1CB2287A0028504C;
+					};
+					B507A0251CB2287B0028504C = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = B5079FFE1CB2287A0028504C;
+					};
+				};
+			};
+			buildConfigurationList = B5079FFA1CB2287A0028504C /* Build configuration list for PBXProject "SafeNightOut" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B5079FF61CB2287A0028504C;
+			productRefGroup = B507A0001CB2287A0028504C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B5079FFE1CB2287A0028504C /* SafeNightOut */,
+				B507A01A1CB2287B0028504C /* SafeNightOutTests */,
+				B507A0251CB2287B0028504C /* SafeNightOutUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B5079FFD1CB2287A0028504C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B507A0151CB2287A0028504C /* LaunchScreen.storyboard in Resources */,
+				B507A0121CB2287A0028504C /* Assets.xcassets in Resources */,
+				B507A00D1CB2287A0028504C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B507A0191CB2287B0028504C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B507A0241CB2287B0028504C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B5079FFB1CB2287A0028504C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B507A00A1CB2287A0028504C /* ViewController.m in Sources */,
+				B507A0071CB2287A0028504C /* AppDelegate.m in Sources */,
+				B507A0101CB2287A0028504C /* SafeNightOut.xcdatamodeld in Sources */,
+				B507A0041CB2287A0028504C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B507A0171CB2287B0028504C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B507A0201CB2287B0028504C /* SafeNightOutTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B507A0221CB2287B0028504C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B507A02B1CB2287B0028504C /* SafeNightOutUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B507A01D1CB2287B0028504C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5079FFE1CB2287A0028504C /* SafeNightOut */;
+			targetProxy = B507A01C1CB2287B0028504C /* PBXContainerItemProxy */;
+		};
+		B507A0281CB2287B0028504C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5079FFE1CB2287A0028504C /* SafeNightOut */;
+			targetProxy = B507A0271CB2287B0028504C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B507A00B1CB2287A0028504C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B507A00C1CB2287A0028504C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B507A0131CB2287A0028504C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B507A0141CB2287A0028504C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B507A02D1CB2287B0028504C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B507A02E1CB2287B0028504C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B507A0301CB2287B0028504C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SafeNightOut/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evan.test.SafeNightOut;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B507A0311CB2287B0028504C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SafeNightOut/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evan.test.SafeNightOut;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B507A0331CB2287B0028504C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SafeNightOutTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evan.test.SafeNightOutTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SafeNightOut.app/SafeNightOut";
+			};
+			name = Debug;
+		};
+		B507A0341CB2287B0028504C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SafeNightOutTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evan.test.SafeNightOutTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SafeNightOut.app/SafeNightOut";
+			};
+			name = Release;
+		};
+		B507A0361CB2287B0028504C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SafeNightOutUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evan.test.SafeNightOutUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SafeNightOut;
+			};
+			name = Debug;
+		};
+		B507A0371CB2287B0028504C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SafeNightOutUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evan.test.SafeNightOutUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SafeNightOut;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B5079FFA1CB2287A0028504C /* Build configuration list for PBXProject "SafeNightOut" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B507A02D1CB2287B0028504C /* Debug */,
+				B507A02E1CB2287B0028504C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B507A02F1CB2287B0028504C /* Build configuration list for PBXNativeTarget "SafeNightOut" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B507A0301CB2287B0028504C /* Debug */,
+				B507A0311CB2287B0028504C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B507A0321CB2287B0028504C /* Build configuration list for PBXNativeTarget "SafeNightOutTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B507A0331CB2287B0028504C /* Debug */,
+				B507A0341CB2287B0028504C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B507A0351CB2287B0028504C /* Build configuration list for PBXNativeTarget "SafeNightOutUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B507A0361CB2287B0028504C /* Debug */,
+				B507A0371CB2287B0028504C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B507A00E1CB2287A0028504C /* SafeNightOut.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B507A00F1CB2287A0028504C /* SafeNightOut.xcdatamodel */,
+			);
+			currentVersion = B507A00F1CB2287A0028504C /* SafeNightOut.xcdatamodel */;
+			path = SafeNightOut.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B5079FF71CB2287A0028504C /* Project object */;
+}
