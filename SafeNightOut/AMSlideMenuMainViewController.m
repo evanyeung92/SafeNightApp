@@ -84,6 +84,8 @@ static NSMutableArray *allInstances;
     
     NSValue *value = [NSValue valueWithNonretainedObject:self];
     [allInstances addObject:value];
+    
+    
 //    [allInstances addObject:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleInterfaceOrientationChangedNotification:) name:UIDeviceOrientationDidChangeNotification object:nil];

@@ -24,6 +24,7 @@
     __weak IBOutlet MKMapView *map;
 }
      @property (nonatomic, strong) NSOperationQueue *searchQueue;
+     @property (nonatomic, assign) BOOL boo;
     
 
 @end
@@ -54,10 +55,13 @@
                @"nightrider":@(4)};
     map.showsUserLocation = YES;
     map.showsBuildings = YES;
+    map.frame = self.view.bounds;
+    map.autoresizingMask = self.view.autoresizingMask;
     
     locationManager = [ [ CLLocationManager alloc ] init ] ;
 
     locationManager.delegate = self;
+    map.delegate = self;
     locationManager.desiredAccuracy =kCLLocationAccuracyNearestTenMeters;
     locationManager.distanceFilter = kCLDistanceFilterNone;
     
@@ -68,12 +72,20 @@
     [locationManager startUpdatingLocation];
     [locationManager requestLocation];
     
+    
+    //display nearby restaurant button
+    UIImage *btnImage = [UIImage imageNamed:@"restau"];
+    [self.restauBtn setImage:btnImage forState:UIControlStateNormal];
+    
+    
+    //Display search TableView on the top of MapView
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     LocationSearchTableViewController *locationSearchTable =
     [storyboard instantiateViewControllerWithIdentifier:@"LocationSearchTable"];
     resultSearchController = [[UISearchController alloc] initWithSearchResultsController:locationSearchTable];
     resultSearchController.searchResultsUpdater = locationSearchTable;
     
+    //Enable search bar in the navigation item.
     UISearchBar *searchBar = resultSearchController.searchBar;
     [searchBar sizeToFit];
     searchBar.placeholder = @"Search for places";
@@ -83,17 +95,20 @@
     resultSearchController.dimsBackgroundDuringPresentation = YES;
     self.definesPresentationContext = YES;
     
-    
+    //Initial a search queue.
     self.searchQueue = [[NSOperationQueue alloc] init];
     self.searchQueue.maxConcurrentOperationCount = 1;
     
     locationSearchTable.mapView = map;
     locationSearchTable.handleMapSearchDelegate = self;
     
+    self.boo = true;
+    //perform health check before requesting PTV API
     [self healthCheck];
+    
+    //Call API to show nearby stops
     nearbyStop = [self nearby:locationManager.location];
     
-
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
@@ -103,28 +118,53 @@
     }
 }
 
-//comment
++ (NSString *)estimateSafetyRank:(double)crimerate
+{
+    NSString *string;
+    if(crimerate >= 0.04 && crimerate <= 0.08)
+    {
+        string = @"Very Safe";
+    }else if(crimerate >= 0.09 && crimerate <= 0.12)
+    {
+        string = @"Safe";
+    }else if(crimerate >= 0.13 && crimerate <= 0.20)
+    {
+        string = @"Unsafe";
+    }else if(crimerate >= 0.21 && crimerate <= 0.30)
+    {
+        string = @"Extremely Dangerous";
+    }
+    return string;
+}
 
+//Show error if error happens on LocationManager
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     NSLog(@"error: %@", error);
 }
 
+
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
-//  CLLocation *location = [locations firstObject];
-//    MKCoordinateSpan span = MKCoordinateSpanMake(0.1, 0.1);
-//    MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, span);
-//    [map setRegion:region animated:true];
+
     [map setUserTrackingMode:MKUserTrackingModeNone animated:YES];
 }
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-   
+    if(self.boo){
+    MKCoordinateRegion mapRegion;
+    mapRegion.center = mapView.userLocation.coordinate;
+    mapRegion.span.latitudeDelta = 0.01;
+    mapRegion.span.longitudeDelta = 0.01;
+    mapRegion = [map regionThatFits:mapRegion];
+    [map setRegion:mapRegion animated:YES];
+        self.boo = false;
+    }
 }
 
+//drop pin annotation when search for a particular place
 - (void)dropPinZoomIn:(MKPlacemark *)placemark
 {
     // cache the pin
@@ -132,56 +172,79 @@
     // clear existing pins
     [map removeAnnotations:(map.annotations)];
     MKPointAnnotation *annotation = [MKPointAnnotation new];
+    
+    //Retrieve safety information
+    NSError *error;
+    NSString *url_string = [NSString stringWithFormat: @"http://safenightout.azurewebsites.net/AreaSafety.php"];
+    NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:url_string]];
+    _safetyInfo= [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    
+    
     annotation.coordinate = placemark.coordinate;
     annotation.title = placemark.name;
-    annotation.subtitle = [NSString stringWithFormat:@"%@ %@",
-                           (placemark.locality == nil ? @"" : placemark.locality),
-                           (placemark.administrativeArea == nil ? @"" : placemark.administrativeArea)
-                           ];
+//    annotation.subtitle = [NSString stringWithFormat:@"%@ %@",
+//                           (placemark.locality == nil ? @"" : placemark.locality),
+//                           (placemark.administrativeArea == nil ? @"" : placemark.administrativeArea)
+//                           ];
+    NSString *suburb = placemark.locality;
+    NSLog(@"%@",suburb);
+    for(NSArray *arr in _safetyInfo){
+    if([suburb isEqualToString:[arr valueForKey:@"Suburb name"]]){
+        double value = [[arr valueForKey:@"Average crime rate"] doubleValue];
+        NSString *safetyRank = [MapViewController estimateSafetyRank:value];
+        NSString *string = [NSString stringWithFormat:@"Safety Rank:%1$@ ",safetyRank];
+        
+        annotation.subtitle = string;
+    }
+    }
     [map addAnnotation:annotation];
     MKCoordinateSpan span = MKCoordinateSpanMake(0.05, 0.05);
     MKCoordinateRegion region = MKCoordinateRegionMake(placemark.coordinate, span);
     [map setRegion:region animated:true];
 }
 
-#pragma mark - MKMapViewDelegate
+//current location button clicked lisenter
+- (IBAction)currentLocation:(UIButton *)sender {
+    MKUserLocation *userLocation = map.userLocation;
+    if (!userLocation)
+    return;
+    
+    MKCoordinateRegion region;
+    region.center = userLocation.location.coordinate;
+    region.span = MKCoordinateSpanMake(0.01, 0.01); //Zoom distance
+    region = [map regionThatFits:region];
+    [map setRegion:region animated:YES];
+}
 
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+//Function of change map type
+- (void) changeMapType: (id)sender
 {
-    MKMapRect mapRect = mapView.visibleMapRect;
-    MKMapPoint eastMapPoint = MKMapPointMake(MKMapRectGetMinX(mapRect), MKMapRectGetMidY(mapRect));
-    MKMapPoint westMapPoint = MKMapPointMake(MKMapRectGetMaxX(mapRect), MKMapRectGetMidY(mapRect));
-    
-    CGFloat meters = MKMetersBetweenMapPoints(eastMapPoint, westMapPoint);
-    
-    if (meters > 5000)
-        
-        return;
-    
-    for (int i = 0; i<nearbyStop.count; i++) {
-        CLLocationCoordinate2D coordinates;
-        NSString *longi = [[nearbyStop objectAtIndex:i] valueForKeyPath:@"result.lon"];
-        
-        NSString *latit = [[nearbyStop objectAtIndex:i] valueForKeyPath:@"result.lat"];
-        NSString *address = [[nearbyStop objectAtIndex:i] valueForKeyPath:@"result.location_name"];
-        NSString *type = [[nearbyStop objectAtIndex:i] valueForKeyPath:@"result.transport_type"];
-        
-        coordinates.longitude = [longi doubleValue];
-        coordinates.latitude = [latit doubleValue];
-        
-        if(CLLocationCoordinate2DIsValid(coordinates))
-        {
-            StopAnnotation *annotObj = [[StopAnnotation alloc] initWithCoordinate:coordinates title:address subtitle:type ];
-            [map addAnnotation:annotObj];
-        }else
-        {
-            NSLog(@"place has invalid coordinates");
-        }
+    if (map.mapType == MKMapTypeStandard)
+        map.mapType = MKMapTypeHybrid;
+    else
+        map.mapType = MKMapTypeStandard;
+}
 
-        
-    }
-    // if have some backlogged requests, let's just get rid of them
+//show nearby restaurant button clicked lisenter
+- (IBAction)restauBtn:(UIButton *)sender{
     
+    MKMapView *mapView = map;
+    NSMutableArray *annotationsToRemove = [NSMutableArray arrayWithCapacity:[map.annotations count]];
+    if(self.restauBtn.selected==YES)
+    {
+        [self.restauBtn setSelected:NO];
+        for(int i = 0; i<[map.annotations count];i++){
+            if([[map.annotations objectAtIndex:i] isKindOfClass:[CustomAnnotation class]])
+            {
+                [annotationsToRemove addObject:[map.annotations objectAtIndex:i]];
+            }
+        }
+        [map removeAnnotations:annotationsToRemove];
+
+
+    }
+    else{
+    [self.restauBtn setSelected:YES];
     [self.searchQueue cancelAllOperations];
     
     // issue new MKLoadSearch
@@ -218,7 +281,7 @@
                 CustomAnnotation *annotation = [[CustomAnnotation alloc] initWithPlacemark:item.placemark];
                 annotation.title = item.name;
                 annotation.phone = item.phoneNumber;
-                annotation.subtitle = item.placemark.addressDictionary[(NSString *)kABPersonAddressStreetKey];
+                annotation.subtitle = item.phoneNumber;
                 [annotations addObject:annotation];
             }];
             
@@ -234,6 +297,51 @@
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
                                      beforeDate:[NSDate distantFuture]];
     }];
+    }
+    
+    [_restauBtn showsTouchWhenHighlighted];
+
+}
+#pragma mark - MKMapViewDelegate
+//Add nearby bus stop annotations when change region
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    MKMapRect mapRect = mapView.visibleMapRect;
+    MKMapPoint eastMapPoint = MKMapPointMake(MKMapRectGetMinX(mapRect), MKMapRectGetMidY(mapRect));
+    MKMapPoint westMapPoint = MKMapPointMake(MKMapRectGetMaxX(mapRect), MKMapRectGetMidY(mapRect));
+    
+    CGFloat meters = MKMetersBetweenMapPoints(eastMapPoint, westMapPoint);
+    
+    if (meters > 5000)
+        
+        return;
+    
+    for (int i = 0; i<nearbyStop.count; i++) {
+        CLLocationCoordinate2D coordinates;
+        NSString *longi = [[nearbyStop objectAtIndex:i] valueForKeyPath:@"result.lon"];
+        
+        NSString *latit = [[nearbyStop objectAtIndex:i] valueForKeyPath:@"result.lat"];
+        NSString *address = [[nearbyStop objectAtIndex:i] valueForKeyPath:@"result.location_name"];
+        NSString *type = [[nearbyStop objectAtIndex:i] valueForKeyPath:@"result.transport_type"];
+        NSNumber *stopID = [[nearbyStop objectAtIndex:i] valueForKeyPath:@"result.stop_id"];
+        
+        
+        coordinates.longitude = [longi doubleValue];
+        coordinates.latitude = [latit doubleValue];
+        
+        if(CLLocationCoordinate2DIsValid(coordinates))
+        {
+            StopAnnotation *annotObj = [[StopAnnotation alloc] initWithCoordinate:coordinates title:address subtitle:type];
+            annotObj.stopId = stopID;
+            [map addAnnotation:annotObj];
+        }else
+        {
+            NSLog(@"place has invalid coordinates");
+        }
+
+        
+    }
+
 }
 
 
@@ -253,63 +361,185 @@
         stopView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
         stopView.enabled = YES;
         stopView.canShowCallout = YES;
+        NSString *train = @"train";
+        NSString *tram = @"tram";
+        NSString *bus = @"bus";
+        NSString *vline = @"V/Line";
+        NSString *nightrider = @"NightRider";
+        if([annotation.subtitle isEqualToString:train])
+        {
         UIImage *ptvImg = [UIImage imageNamed:@"iconTrain"];
         stopView.image = ptvImg;
-        stopView.tintColor = [UIColor brownColor];
+        }else if([annotation.subtitle isEqualToString:tram])
+        {
+        UIImage *ptvImg = [UIImage imageNamed:@"iconTram"];
+        stopView.image = ptvImg;
+        }else if([annotation.subtitle isEqualToString:bus])
+        {
+            UIImage *ptvImg = [UIImage imageNamed:@"iconBus"];
+            stopView.image = ptvImg;
+        }else if([annotation.subtitle isEqualToString:vline])
+        {
+            UIImage *ptvImg = [UIImage imageNamed:@"iconTram"];
+            stopView.image = ptvImg;
+        }else if([annotation.subtitle isEqualToString:nightrider])
+        {
+            UIImage *ptvImg = [UIImage imageNamed:@"NightBus_logo"];
+            stopView.image = ptvImg;
+        }
+        
+        
+        stopView.tintColor = [UIColor blueColor];
         stopView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     } else {
         stopView.annotation = annotation;
     }
   
-    UIButton *ptvButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [ptvButton setBackgroundImage:[UIImage imageNamed:@"iconTrain"] forState:UIControlStateNormal];
+    UIButton *ptvButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 35, 36)];
+    [ptvButton setBackgroundImage:[UIImage imageNamed:@"logo-pt-vic"] forState:UIControlStateNormal];
     stopView.rightCalloutAccessoryView = ptvButton;
-    
-//    UIButton *driveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-//    [driveButton setBackgroundImage:[UIImage imageNamed:@"car"]
-//                      forState:UIControlStateNormal];
-//        [driveButton addTarget:self action:@selector(getDirections) forControlEvents:UIControlEventTouchUpInside];
-//    stopView.leftCalloutAccessoryView = driveButton;
-    
+   
     return stopView;
     }
     
+    else if([annotation isKindOfClass:[MKPointAnnotation class]])
+    {
+        MKAnnotationView *searchView = (MKAnnotationView *) [map dequeueReusableAnnotationViewWithIdentifier:@"search"];
+        if (searchView == nil) {
+            searchView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"search"];
+            searchView.enabled = YES;
+            searchView.canShowCallout = YES;
+            searchView.tintColor = [UIColor orangeColor];
+        } else {
+            searchView.annotation = annotation;
+        }
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+        [button setBackgroundImage:[UIImage imageNamed:@"car"]
+                          forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(getDirections) forControlEvents:UIControlEventTouchUpInside];
+        searchView.leftCalloutAccessoryView = button;
+
+        return searchView;
+    }
+    
+    else if([annotation isKindOfClass:[CustomAnnotation class]])
+    {
+        MKAnnotationView *searchView = (MKAnnotationView *) [map dequeueReusableAnnotationViewWithIdentifier:@"barandrestaurant"];
+        if (searchView == nil) {
+            searchView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"barandrestaurant"];
+            searchView.enabled = YES;
+            searchView.canShowCallout = YES;
+            searchView.tintColor = [UIColor blueColor];
+            UIButton *callBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 35, 35)];
+            [callBtn setBackgroundImage:[UIImage imageNamed:@"phone_icon"] forState:UIControlStateNormal];
+            searchView.rightCalloutAccessoryView = callBtn;
+            [searchView setTag:1];
+        } else {
+            searchView.annotation = annotation;
+        }
+        
+        return searchView;
+        
+    }
     return nil;
 }
 
+//Show PTV callout button and pass data to next TableViewController
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    if(view.rightCalloutAccessoryView)
+    if(view.rightCalloutAccessoryView && !(view.tag == 1))
     {
         PTVTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"PTV"];
+        NSNumber *stpId = ((StopAnnotation*)view.annotation).stopId;
 
         [self.navigationController pushViewController:vc animated:YES];
-//        NSLog(@"%@",view.annotation.title);
-//        NSLog(@"%@",view.annotation.subtitle);
         vc.stopTitle = view.annotation.title;
         
-            for (int i = 0; i<nearbyStop.count; i++)
-            {
-                NSString *mode = [[nearbyStop objectAtIndex:i] valueForKeyPath:@"result.transport_type"];
-                NSNumber *stopId = [[nearbyStop objectAtIndex:i] valueForKeyPath:@"result.stop_id"];
-                nextDepartures = [self departuresForMode:mode stop:stopId limit:@(5)];
-
-            }
+        nextDepartures = [self departuresForMode:view.annotation.subtitle stop:stpId limit:@(1)];
         
-        for(int j = 0; j<nextDepartures.count;j++){
-            NSMutableArray *lineNumAr = [nextDepartures  objectForKey:@"values"];
-            for(int t = 0; t<lineNumAr.count;t++){
-                NSString *lineNum = [[lineNumAr objectAtIndex:t] valueForKeyPath:@"platform.direction.line.line_number"];
-                NSLog(@"%@",lineNum);
-                
-            }
+        NSMutableArray *lineNumAr = [nextDepartures  objectForKey:@"values"];
+        NSMutableArray *fullInfo = [[NSMutableArray alloc]init];
+        
+
+        for(int t = 0; t<lineNumAr.count;t++)
+        {
+          NSMutableArray *busInformation = [[NSMutableArray alloc] init];
+          NSString *lineNum = [[lineNumAr objectAtIndex:t] valueForKeyPath:@"platform.direction.line.line_number"];
+          NSString *lineName = [[lineNumAr objectAtIndex:t] valueForKeyPath:@"platform.direction.line.line_name_short"];
+          NSString *destination = [[lineNumAr objectAtIndex:t] valueForKeyPath:@"run.destination_name"];
+          NSString *depTime = [[lineNumAr objectAtIndex:t] valueForKeyPath:@"time_timetable_utc"];
+             NSString *type = [[lineNumAr objectAtIndex:t] valueForKeyPath:@"platform.direction.line.transport_type"];
             
+            [busInformation addObject:lineNum];
+            [busInformation addObject:lineName];
+            [busInformation addObject:destination];
+            [busInformation addObject:depTime];
+            [busInformation addObject:type];
+            
+            [fullInfo addObject:busInformation];
+           
         }
         
         
-       // NSLog(@"%@",nextDepartures);
+        
+        NSMutableArray *infoArrayWithKeys = [[NSMutableArray alloc]init];
+        for (NSArray *arr in fullInfo) {
+            
+            NSDictionary *dict = @{
+                                   @"bus_route" : [arr objectAtIndex:0],
+                                   @"line_name" : [arr objectAtIndex:1],
+                                   @"destination" : [arr objectAtIndex:2],
+                                   @"time" : [arr objectAtIndex:3],
+                                   @"type" : [arr objectAtIndex:4],
+                                   };
+            
+            [infoArrayWithKeys addObject:dict];
+        }
+        
+      NSLog(@"%@",infoArrayWithKeys);
+        vc.busInfo = infoArrayWithKeys;
+   
     }
     
+    else if( view.tag == 1 && view.rightCalloutAccessoryView){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Call" message:view.annotation.subtitle preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Call" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            NSString *phoneNumber = view.annotation.subtitle;
+            NSString *finalString = [phoneNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+            NSLog(@"%@",finalString);
+            finalString = [finalString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            
+            NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",finalString]];
+            NSLog(@"%@",phoneUrl);
+            if ([[UIApplication sharedApplication] canOpenURL:phoneUrl])
+                [[UIApplication sharedApplication] openURL:phoneUrl];
+            
+            
+            
+        }];
+        
+        UIAlertAction *noButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        
+        [alert addAction:okButton];
+        [alert addAction:noButton];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
+}
+
+//transfer data to string
++(NSString *)UTCrfc822Date:(NSDate*)datetime
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [dateFormatter setLocale:enUSPOSIXLocale];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    
+    return [dateFormatter stringFromDate:datetime];
 }
 
 
@@ -365,7 +595,6 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", mBaseURL, [MapViewController signApiCall:apiCall]]];
     
     id response = [self httpWrapper:url];
-      //  NSLog( @"%@", response );
     return response;
 }
 
@@ -398,7 +627,7 @@
                 --retry;
             }
         }
-    };
+    };\
     
 
         doStuff();
@@ -442,17 +671,6 @@
     return HMAC;
 }
 
-+(NSString *)UTCrfc822Date:(NSDate*)datetime
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [dateFormatter setLocale:enUSPOSIXLocale];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-    
-    return [dateFormatter stringFromDate:datetime];
-}
-
 -(NSArray*) nearby:(CLLocation*)location
 {
 
@@ -488,4 +706,80 @@
 }
 */
 
+
+- (IBAction)pubBtn:(UIButton *)sender {
+    
+    MKMapView *mapView = map;
+    NSMutableArray *annotationsToRemove = [NSMutableArray arrayWithCapacity:[map.annotations count]];
+    if(self.pubBtn.selected==YES)
+    {
+        [self.pubBtn setSelected:NO];
+        for(int i = 0; i<[map.annotations count];i++){
+            if([[map.annotations objectAtIndex:i] isKindOfClass:[CustomAnnotation class]])
+            {
+                [annotationsToRemove addObject:[map.annotations objectAtIndex:i]];
+            }
+        }
+        [map removeAnnotations:annotationsToRemove];
+        
+        
+    }
+    else{
+        [self.pubBtn setSelected:YES];
+        [self.searchQueue cancelAllOperations];
+        
+        // issue new MKLoadSearch
+        
+        [self.searchQueue addOperationWithBlock:^{
+            
+            __block BOOL done = NO;
+            
+            MKLocalSearchRequest *requestRestaurant = [[MKLocalSearchRequest alloc] init];
+            requestRestaurant.naturalLanguageQuery = @"Bar";
+            requestRestaurant.region = mapView.region;
+            
+            MKLocalSearch *localSearch = [[MKLocalSearch alloc] initWithRequest:requestRestaurant];
+            [localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+                
+                NSMutableArray *annotations = [NSMutableArray array];
+                
+                [response.mapItems enumerateObjectsUsingBlock:^(MKMapItem *item, NSUInteger idx, BOOL *stop) {
+                    
+                    for (CustomAnnotation *annotation in mapView.annotations)
+                    {
+                        // if don't need this one, don't add it, just return, and check the next one
+                        
+                        if ([annotation isKindOfClass:[CustomAnnotation class]])
+                            if (item.placemark.coordinate.latitude == annotation.coordinate.latitude &&
+                                item.placemark.coordinate.longitude == annotation.coordinate.longitude)
+                            {
+                                return;
+                            }
+                    }
+                    
+                    // otherwise add it
+                    
+                    CustomAnnotation *annotation = [[CustomAnnotation alloc] initWithPlacemark:item.placemark];
+                    annotation.title = item.name;
+                    annotation.phone = item.phoneNumber;
+                    annotation.subtitle = item.phoneNumber;
+                    [annotations addObject:annotation];
+                }];
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [map addAnnotations:annotations];
+                }];
+                
+                done = YES;
+            }];
+            
+            
+            while (!done)
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                         beforeDate:[NSDate distantFuture]];
+        }];
+    }
+    
+    [self.pubBtn showsTouchWhenHighlighted];
+}
 @end

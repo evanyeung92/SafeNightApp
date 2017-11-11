@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SafetyViewController : UIViewController
+@interface SafetyViewController : UITableViewController
+@property (nonatomic, copy) NSMutableArray *safetyInfo;
 
 @end

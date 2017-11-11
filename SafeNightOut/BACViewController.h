@@ -10,4 +10,16 @@
 
 @interface BACViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITableView *drinkTable;
+@property (weak, nonatomic) IBOutlet UILabel *stdDrinkNumber;
+@property (weak, nonatomic) IBOutlet UIPickerView *hourPicker;
+- (IBAction)profileBtn:(UIBarButtonItem *)sender;
+
+- (IBAction)testBtn:(UIButton *)sender;
+- (IBAction)resetBtn:(UIButton *)sender;
+
+@property (strong, nonatomic) UIButton *add1;
+@property (strong, nonatomic) UIButton *add2;
+@property (strong, nonatomic) UIButton *add3;
+
 @end

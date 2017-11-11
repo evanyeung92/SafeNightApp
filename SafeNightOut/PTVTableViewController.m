@@ -7,6 +7,7 @@
 //
 
 #import "PTVTableViewController.h"
+#import "TimerViewController.h"
 
 @interface PTVTableViewController () <UITableViewDelegate,UITableViewDataSource>
 @end
@@ -51,7 +52,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return [_busInfo count];
 }
 
 
@@ -59,12 +60,98 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ptvCell" forIndexPath:indexPath];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ptvCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ptvCell"];
     }
-    cell.textLabel.text = stopTitle;
+   // UIImage *thumbnailImageView = (UIImage *)[cell viewWithTag:100];
+    UILabel *routeLabel = (UILabel *)[cell viewWithTag:103];
+    UILabel *destinationLabel = (UILabel *)[cell viewWithTag:101];
+    UITextView *stopsLabel = (UITextView *)[cell viewWithTag:102];
+                              
+    UILabel *timeLabel = (UILabel *)[cell viewWithTag:104];
+
     
+    NSString *dest = [[_busInfo objectAtIndex:indexPath.row] valueForKey:@"destination"];
+    destinationLabel.text = dest;
+    NSString *stops = [[_busInfo objectAtIndex:indexPath.row] valueForKey:@"line_name"];
+    stopsLabel.text = stops;
+    
+    NSString *route = [[_busInfo objectAtIndex:indexPath.row] valueForKey:@"bus_route"];
+    routeLabel.text = route;
+    NSString *type = [[_busInfo objectAtIndex:indexPath.row] valueForKey:@"type"];
+    NSString *time = [[_busInfo objectAtIndex:indexPath.row] valueForKey:@"time"];
+    NSDate *localdate = [PTVTableViewController apiDateStringToLocalDate:time];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+
+    [formatter setDateFormat:@"hh:mm a"];
+
+    timeLabel.text = [formatter stringFromDate:localdate];
+    
+    if([type isEqualToString:@"train"])
+    {
+    cell.imageView.image = [UIImage imageNamed:@"iconTrain"];
+    }else if([type isEqualToString:@"tram"])
+    {
+     cell.imageView.image = [UIImage imageNamed:@"iconTram"];
+    }else if([type isEqualToString:@"bus"])
+    {
+        cell.imageView.image = [UIImage imageNamed:@"iconBus"];
+    }else if([type isEqualToString:@"vline"])
+    {
+        cell.imageView.image = [UIImage imageNamed:@"iconBus"];
+    }else if([type isEqualToString:@"nightrider"])
+    {
+        cell.imageView.image = [UIImage imageNamed:@"NightBus_logo"];
+    }
+    
+        UILabel *timeLabelForPass = (UILabel *)[cell viewWithTag:105];
+    timeLabelForPass.text = [[_busInfo objectAtIndex:indexPath.row] valueForKey:@"time"];
+    cell.accessoryView = [[ UIImageView alloc ]
+                          initWithImage:[UIImage imageNamed:@"alarm_clock" ]];
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 160;
+}
+
++(NSDate*) apiDateStringToLocalDate:(NSString*)dateString
+{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    NSDate * utcDate = [dateFormatter dateFromString:dateString];
+    
+    NSTimeZone *tz = [NSTimeZone localTimeZone];
+    NSInteger seconds = [tz secondsFromGMTForDate: utcDate];
+    NSDate * localDate = [NSDate dateWithTimeInterval: seconds sinceDate: utcDate];
+    
+    return localDate;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    TimerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"timer"];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UILabel *timeLabelForPass = (UILabel *)[cell viewWithTag:105];
+    NSString *busTimeString = timeLabelForPass.text;
+
+     NSDate *busTime = [PTVTableViewController apiDateStringToLocalDate:busTimeString];
+    NSLog(@"%@",busTime);
+    NSDate *current = [NSDate date];
+    NSLog(@"%@",current);
+    NSTimeInterval secondDifference = [busTime timeIntervalSinceDate:current];
+    int difference = secondDifference;
+    vc.remainingCounts = difference;
+    NSLog(@"%d",difference);
+}
+
+
 
 
 /*

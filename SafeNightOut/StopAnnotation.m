@@ -11,13 +11,14 @@
 @implementation StopAnnotation
 @synthesize title;
 @synthesize subtitle;
+@synthesize stopId;
 @synthesize coordinate;
 
--(id)initWithCoordinate:(CLLocationCoordinate2D) c  title:(NSString *) t  subtitle:(NSString *)timed
+-(id)initWithCoordinate:(CLLocationCoordinate2D) c  title:(NSString *) t  subtitle:(NSString *)timed;
 {
-    self.coordinate=c;
     self.subtitle=timed;
     self.title=t;
+    self.coordinate=c;
     return self;
 }
 

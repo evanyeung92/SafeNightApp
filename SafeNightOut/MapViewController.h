@@ -21,6 +21,17 @@
     NSDictionary *nextDepartures;
     NSMutableData *muData;
 }
+@property (weak, nonatomic) IBOutlet UIButton *restauBtn;
+- (IBAction)restauBtn:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *pubBtn;
+- (IBAction)pubBtn:(UIButton *)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *currentLoc;
+- (IBAction)currentLocation:(UIButton *)sender;
+
+
+@property (weak, nonatomic) IBOutlet UIToolbar *mapTool;
+
 -(id) initWithPath:(NSString*)path devId:(NSString*)devId key:(NSString*)key;
 -(id) initWithDevId:(NSString*)devId key:(NSString*)key;
 
@@ -29,6 +40,6 @@
 -(id) departuresForMode:(NSString*)mode stop:(NSNumber*)stop limit:(NSNumber*)limit;
 +(NSNumber*) transportTypeToMode:(NSString*)transportType;
 @property (nonatomic, strong) UISearchController *searchController;
-
+@property (nonatomic, copy) NSMutableArray *safetyInfo;
 
 @end

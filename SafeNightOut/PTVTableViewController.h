@@ -12,8 +12,11 @@
    
     IBOutlet UITableView *ptvTableView;
     NSString *stopTitle;
-    NSMutableData *data;
+    int *currentTime;
+    int *depTime;
 }
-@property (nonatomic, copy) NSString *stopTitle;
 
+
+@property (nonatomic, copy) NSString *stopTitle;
+@property (nonatomic, copy) NSArray *busInfo;
 @end
